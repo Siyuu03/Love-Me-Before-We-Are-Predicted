@@ -1,0 +1,32 @@
+node_modules/
+dist/
+coverage/
+.vite/
+.cache/
+work/
+outputs/
+
+# Curated master photographs kept locally until web-sized derivatives or an
+# explicit Git LFS policy are approved. Each of these exceeds GitHub's 100 MiB
+# per-file limit; the README uses smaller screened images instead.
+/docs/images/Love Me Before We Are Predicted3.png
+/docs/images/Love Me Before We Are Predicted4.png
+/docs/images/Love Me Before We Are Predicted6.png
+
+.DS_Store
+**/.DS_Store
+
+.env
+.env.*
+!.env.example
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+.idea/
+.vscode/
+
+*.local
