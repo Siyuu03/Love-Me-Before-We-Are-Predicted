@@ -81,6 +81,14 @@ See [Architecture](docs/ARCHITECTURE.md) for module ownership, timing, privacy b
 
 These outcomes are not diagnoses. See [Result Logic](docs/RESULT_LOGIC.md) and the [Model Card](docs/MODEL_CARD.md).
 
+## How results are selected / 六种结果如何产生
+
+Each camera independently averages its latest ten valid predictions for the exact labels `feminine-coded appearance` and `masculine-coded appearance`. The program derives a signed balance `s`, per-camera clarity `q = abs(s)`, and pair distance `D = abs(sA - sB) / 2`. Insufficient or unclear data safely becomes Unreadable; otherwise ordered thresholds route to Soft Merge, Desire, Misreading, Collision, or—in the one-clear/one-unclear case—Refusal. The values are frozen once at CONTACT and cannot change during RESULT. Keys `1`–`6` are explicit previews that bypass ML.
+
+两台摄像头分别对最近 10 次有效预测做算术平均，再计算 `s`、单侧明确度 `q` 和双侧距离 `D`。样本不足或不稳定时安全回落到 Unreadable；其余情况严格按代码中的有序阈值进入五个其他结果。CONTACT 时只冻结一次，RESULT 期间不会重新分类。数字键 `1`–`6` 是绕过 ML 的开发预览。
+
+The model reads training-data-defined **gender-coded appearance**, not a participant's real gender identity, personality, consent, or relationship. The complete decision table, boundary ownership, limitations, and bilingual narration are documented in [Result Logic / 六种结果选择逻辑](docs/RESULT_LOGIC.md).
+
 ![A result view combining two camera observations and the particle performance](docs/images/Love%20Me%20Before%20We%20Are%20Predicted2.png)
 
 ## Hardware
